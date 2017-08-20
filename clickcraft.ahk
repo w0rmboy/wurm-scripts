@@ -15,9 +15,15 @@ WinGetPos, winX, winY, winW, winH, ahk_exe WurmLauncher.exe
 ImageSearch, craftLegendX, craftLegendY, winX, winY, winX+winW, winY+winH, *TransBlack %imagefolder%crafting.png
 ImageSearch, craftTLX, craftTLY, craftLegendX-100, craftLegendY-100, craftLegendX+100, craftLegendY+100, *TransBlack %imagefolder%windowcorner.png
 ImageSearch, createX, createY, craftTLX, craftTLY, winX+winW, winY+winH, *TransBlack %imagefolder%continue.png
+if (not createX) {
+    ImageSearch, createX, createY, craftTLX, craftTLY, winX+winW, winY+winH, *TransBlack %imagefolder%create.png
+    if (not createX) {
+        MsgBox, Not able to find the create button.
+    }
+}
 ImageSearch, craftMaxX, craftMaxY, craftTLX, craftTLY, winX+winW, winY+winH, *TransBlack %imagefolder%craftmax.png
 if (not craftTLX or not createX)
-    MsgBox, Not able to find crafting window or the create button.
+    MsgBox, Not able to find crafting window.
 
 if (not craftMaxX)
     MsgBox, Not able to find max craft button.
